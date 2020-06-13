@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Produtos</h1>
+<%= link_to '<i class="material-icons left">cake</i>Novo produto'.html_safe, 
+            new_product_path, 
+            class: 'blue-grey btn waves-effect waves-light' %>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Preço</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.nome %></td>
+        <td><%= product.tipo %></td>
+        <td><%= "R$ %0.2f" % [product.preco] %></td>
+        <td><%= link_to 'Exibir', product %></td>
+        <td><%= link_to 'Editar', edit_product_path(product) %></td>
+        <td><%= link_to 'Destruir', product, method: :delete, data: { confirm: 'Tem certeza que deseja destruir o registro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Voltar', welcome_path, class: "blue-grey btn waves-effect waves-light" %>

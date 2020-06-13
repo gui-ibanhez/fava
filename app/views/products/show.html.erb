@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<h1>Descrição do Produto</h1>
+<p>
+  <strong>Nome:</strong>
+  <%= @product.nome %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @product.tipo %>
+</p>
+
+<p>
+  <strong>Preço:</strong>
+  <%= "R$ %0.2f" % [@product.preco] %>
+</p>
+
+<%= link_to 'Editar', edit_product_path(@product), class: "blue-grey btn waves-effect waves-light" %>
+<%= link_to 'Voltar', products_path, class: "blue-grey btn waves-effect waves-light" %>
