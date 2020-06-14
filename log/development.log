@@ -3339,3 +3339,2153 @@ Processing by WelcomeController#index as HTML
 Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms | Allocations: 892)
 
 
+  [1m[35m (54.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCustomers (20200614132911)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE TABLE "customers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "address" varchar, "number" integer, "neighborhood" varchar, "cep" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614132911"]]
+  [1m[35m (20.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrders (20200614135508)
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateOrders (20200614135508)
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateOrders (20200614135508)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer NOT NULL, "value" decimal, "discount" decimal, "payment" varchar, "origin" varchar, "request_ahead" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_3dad120da9"
+FOREIGN KEY ("customer_id")
+  REFERENCES "customers" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_orders_on_customer_id" ON "orders" ("customer_id")[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614135508"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrderItems (20200614142717)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "order_items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "order_id" integer NOT NULL, "product_id" integer NOT NULL, "quantity" decimal, "value" decimal, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e3cb28f071"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_f1a29ddd47"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_order_items_on_order_id" ON "order_items" ("order_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_order_items_on_product_id" ON "order_items" ("product_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614142717"]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRequests (20200614143252)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "requests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer NOT NULL, "mailing" boolean, "items" text, "delivery_date" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4240dbfa6b"
+FOREIGN KEY ("customer_id")
+  REFERENCES "customers" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_requests_on_customer_id" ON "requests" ("customer_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614143252"]]
+  [1m[35m (15.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (24.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2020-06-14 11:46:28 -0300
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 68.0ms | Allocations: 2285)
+Completed 200 OK in 329ms (Views: 250.0ms | ActiveRecord: 0.0ms | Allocations: 5393)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 11:46:35 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1644)
+Completed 200 OK in 241ms (Views: 7.8ms | ActiveRecord: 0.8ms | Allocations: 4129)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 11:46:39 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 981.1ms | Allocations: 5068)
+  Rendered requests/new.html.erb within layouts/application (Duration: 982.8ms | Allocations: 5389)
+Completed 200 OK in 1005ms (Views: 986.9ms | ActiveRecord: 0.9ms | Allocations: 10007)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 11:47:28 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:19
+  Rendered customers/index.html.erb within layouts/application (Duration: 58.2ms | Allocations: 1509)
+Completed 200 OK in 392ms (Views: 68.3ms | ActiveRecord: 1.6ms | Allocations: 3986)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 11:47:31 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 133.1ms | Allocations: 2438)
+  Rendered customers/new.html.erb within layouts/application (Duration: 148.8ms | Allocations: 2749)
+Completed 200 OK in 202ms (Views: 161.0ms | ActiveRecord: 1.0ms | Allocations: 8155)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 11:50:26 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 33.0ms | Allocations: 1518)
+  Rendered customers/new.html.erb within layouts/application (Duration: 34.8ms | Allocations: 1830)
+Completed 200 OK in 46ms (Views: 42.4ms | ActiveRecord: 0.0ms | Allocations: 3461)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 11:51:18 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.4ms | Allocations: 1494)
+  Rendered customers/new.html.erb within layouts/application (Duration: 4.7ms | Allocations: 1805)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 3423)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 11:55:59 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 2.7ms | Allocations: 1500)
+  Rendered customers/new.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1811)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.0ms | Allocations: 3429)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 11:57:21 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:19
+  Rendered customers/index.html.erb within layouts/application (Duration: 21.3ms | Allocations: 1099)
+Completed 200 OK in 32ms (Views: 30.7ms | ActiveRecord: 0.3ms | Allocations: 2720)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 11:58:29 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 19.4ms | Allocations: 1104)
+Completed 200 OK in 26ms (Views: 24.5ms | ActiveRecord: 0.3ms | Allocations: 2720)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:00:28 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 33.7ms | Allocations: 1113)
+Completed 200 OK in 42ms (Views: 40.4ms | ActiveRecord: 0.3ms | Allocations: 2730)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 12:00:35 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 4.7ms | Allocations: 1498)
+  Rendered customers/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 1809)
+Completed 200 OK in 18ms (Views: 16.0ms | ActiveRecord: 0.0ms | Allocations: 2663)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 12:01:30 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.7ms | Allocations: 1496)
+  Rendered customers/new.html.erb within layouts/application (Duration: 16.7ms | Allocations: 1821)
+Completed 200 OK in 26ms (Views: 22.0ms | ActiveRecord: 0.0ms | Allocations: 3440)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:03:07 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1114)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 1969)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 12:03:14 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.3ms | Allocations: 1045)
+  Rendered customers/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1121)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 1839)
+
+
+Started POST "/customers" for 127.0.0.1 at 2020-06-14 12:04:04 -0300
+Processing by CustomersController#create as HTML
+  Parameters: {"authenticity_token"=>"xCspsgQx4Tl7E6bryM8qTivxYaFgH89OfBI1nn+YtIzOvXtFqUB0nPaT1XFKPQHsEi71/X1DlqaIgam0QIaWGA==", "customer"=>{"name"=>"Guilherme Ibanhez", "email"=>"guilherme.ibanhez@gmail.com", "address"=>"rua doutor silvio dante bertacchi", "number"=>"230", "neighborhood"=>"Vila Sônia", "cep"=>"05625000"}, "button"=>""}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/customers_controller.rb:30:in `block in create'
+  [1m[36mCustomer Create (20.3ms)[0m  [1m[32mINSERT INTO "customers" ("name", "email", "address", "number", "neighborhood", "cep", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Guilherme Ibanhez"], ["email", "guilherme.ibanhez@gmail.com"], ["address", "rua doutor silvio dante bertacchi"], ["number", 230], ["neighborhood", "Vila Sônia"], ["cep", "05625000"], ["created_at", "2020-06-14 15:04:04.119746"], ["updated_at", "2020-06-14 15:04:04.119746"]]
+  ↳ app/controllers/customers_controller.rb:30:in `block in create'
+  [1m[35m (13.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/customers_controller.rb:30:in `block in create'
+Redirected to http://localhost:5000/customers/1
+Completed 302 Found in 72ms (ActiveRecord: 34.4ms | Allocations: 3811)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:04:04 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 20.6ms | Allocations: 523)
+Completed 200 OK in 31ms (Views: 24.8ms | ActiveRecord: 0.4ms | Allocations: 2308)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:04:10 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 936)
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.5ms | Allocations: 1650)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 12:04:25 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.9ms | Allocations: 1125)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 52.1ms | Allocations: 1371)
+Completed 200 OK in 59ms (Views: 55.2ms | ActiveRecord: 0.5ms | Allocations: 2743)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 12:06:39 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.8ms | Allocations: 1578)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 31.8ms | Allocations: 1960)
+Completed 200 OK in 46ms (Views: 39.7ms | ActiveRecord: 0.3ms | Allocations: 4112)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:06:41 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 496)
+Completed 200 OK in 16ms (Views: 5.2ms | ActiveRecord: 0.5ms | Allocations: 1872)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:06:48 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1246)
+Completed 200 OK in 15ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 2103)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:06:52 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (1.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 256)
+Completed 200 OK in 12ms (Views: 5.5ms | ActiveRecord: 1.3ms | Allocations: 1492)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:07:22 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 13.9ms | Allocations: 500)
+Completed 200 OK in 22ms (Views: 20.2ms | ActiveRecord: 0.2ms | Allocations: 2643)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:07:41 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 20.3ms | Allocations: 491)
+Completed 200 OK in 31ms (Views: 29.1ms | ActiveRecord: 0.2ms | Allocations: 2629)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:08:35 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 14.9ms | Allocations: 512)
+Completed 200 OK in 23ms (Views: 20.1ms | ActiveRecord: 0.5ms | Allocations: 2651)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:08:47 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1238)
+Completed 200 OK in 15ms (Views: 13.1ms | ActiveRecord: 0.3ms | Allocations: 2092)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:08:52 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 278)
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 1515)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:08:54 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 931)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.4ms | Allocations: 1644)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 12:08:55 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.2ms | Allocations: 1582)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1964)
+Completed 200 OK in 16ms (Views: 13.3ms | ActiveRecord: 0.5ms | Allocations: 3336)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:08:59 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 951)
+Completed 200 OK in 10ms (Views: 8.6ms | ActiveRecord: 0.4ms | Allocations: 1667)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:10:09 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 25.8ms | Allocations: 531)
+Completed 200 OK in 35ms (Views: 32.8ms | ActiveRecord: 0.3ms | Allocations: 2669)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:10:31 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 20.9ms | Allocations: 517)
+Completed 200 OK in 32ms (Views: 27.5ms | ActiveRecord: 0.8ms | Allocations: 2658)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 12:10:37 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 5.5ms | Allocations: 1572)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1953)
+Completed 200 OK in 17ms (Views: 12.2ms | ActiveRecord: 0.7ms | Allocations: 3325)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 12:10:47 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 4.2ms | Allocations: 1574)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 9.8ms | Allocations: 1955)
+Completed 200 OK in 21ms (Views: 19.0ms | ActiveRecord: 0.3ms | Allocations: 4091)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 12:10:49 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (2.1ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 36.0ms | Allocations: 518)
+Completed 200 OK in 65ms (Views: 48.3ms | ActiveRecord: 2.1ms | Allocations: 1895)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:10:52 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1263)
+Completed 200 OK in 14ms (Views: 11.8ms | ActiveRecord: 0.3ms | Allocations: 2119)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 12:11:05 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 26.8ms | Allocations: 1245)
+Completed 200 OK in 34ms (Views: 31.9ms | ActiveRecord: 0.3ms | Allocations: 2865)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 12:12:21 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1066)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.4ms | Allocations: 2349)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:12:23 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 4.2ms | Allocations: 2561)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2873)
+Completed 200 OK in 19ms (Views: 10.6ms | ActiveRecord: 0.0ms | Allocations: 3726)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:13:00 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 28.1ms | Allocations: 2563)
+  Rendered requests/new.html.erb within layouts/application (Duration: 29.4ms | Allocations: 2874)
+Completed 200 OK in 36ms (Views: 35.1ms | ActiveRecord: 0.0ms | Allocations: 4490)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:13:32 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 29.7ms | Allocations: 2564)
+  Rendered requests/new.html.erb within layouts/application (Duration: 34.7ms | Allocations: 2876)
+Completed 200 OK in 45ms (Views: 42.1ms | ActiveRecord: 0.0ms | Allocations: 4493)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:18:12 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 6.1ms | Allocations: 2194)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.5ms | Allocations: 2263)
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.0ms | Allocations: 2980)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:22:05 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 5.9ms | Allocations: 2188)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2256)
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.0ms | Allocations: 2971)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:23:15 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 4.5ms | Allocations: 2200)
+  Rendered requests/new.html.erb within layouts/application (Duration: 4.8ms | Allocations: 2268)
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.0ms | Allocations: 2983)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:23:16 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 11.6ms | Allocations: 2184)
+  Rendered requests/new.html.erb within layouts/application (Duration: 12.4ms | Allocations: 2252)
+Completed 200 OK in 29ms (Views: 28.5ms | ActiveRecord: 0.0ms | Allocations: 3074)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:23:27 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 7.0ms | Allocations: 2182)
+  Rendered requests/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 2250)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.0ms | Allocations: 2965)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:25:00 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 3.3ms | Allocations: 2200)
+  Rendered requests/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2268)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 2983)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:25:26 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 10.2ms | Allocations: 2184)
+  Rendered requests/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 2252)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.0ms | Allocations: 2968)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:25:33 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 10.8ms | Allocations: 2180)
+  Rendered requests/new.html.erb within layouts/application (Duration: 11.1ms | Allocations: 2248)
+Completed 200 OK in 15ms (Views: 14.1ms | ActiveRecord: 0.0ms | Allocations: 2963)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:34:51 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 25.2ms | Allocations: 2560)
+  Rendered requests/new.html.erb within layouts/application (Duration: 28.0ms | Allocations: 2872)
+Completed 200 OK in 35ms (Views: 33.7ms | ActiveRecord: 0.0ms | Allocations: 4493)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:35:15 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 2.8ms | Allocations: 2188)
+  Rendered requests/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2257)
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 2974)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 12:35:31 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 6.6ms | Allocations: 2184)
+  Rendered requests/new.html.erb within layouts/application (Duration: 7.0ms | Allocations: 2252)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 2967)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:11:02 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 5.7ms | Allocations: 2180)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.1ms | Allocations: 2248)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms | Allocations: 2963)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:12:20 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 16.9ms | Allocations: 2186)
+  Rendered requests/new.html.erb within layouts/application (Duration: 17.4ms | Allocations: 2254)
+Completed 200 OK in 27ms (Views: 25.4ms | ActiveRecord: 0.0ms | Allocations: 2969)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:12:20 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 13.2ms | Allocations: 2198)
+  Rendered requests/new.html.erb within layouts/application (Duration: 13.5ms | Allocations: 2266)
+Completed 200 OK in 17ms (Views: 16.3ms | ActiveRecord: 0.0ms | Allocations: 2982)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:12:23 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 2.5ms | Allocations: 2194)
+  Rendered requests/new.html.erb within layouts/application (Duration: 3.1ms | Allocations: 2262)
+Completed 200 OK in 9ms (Views: 8.8ms | ActiveRecord: 0.0ms | Allocations: 2978)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:13:57 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 27.4ms | Allocations: 2554)
+  Rendered requests/new.html.erb within layouts/application (Duration: 29.1ms | Allocations: 2871)
+Completed 200 OK in 39ms (Views: 37.0ms | ActiveRecord: 0.0ms | Allocations: 4493)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:14:00 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 2.7ms | Allocations: 2202)
+  Rendered requests/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2271)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 2987)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 13:14:02 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (1.0ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1072)
+Completed 200 OK in 19ms (Views: 13.8ms | ActiveRecord: 1.0ms | Allocations: 1926)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:14:03 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 7.2ms | Allocations: 2185)
+  Rendered requests/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2253)
+Completed 200 OK in 12ms (Views: 11.3ms | ActiveRecord: 0.0ms | Allocations: 2969)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:14:49 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 2.8ms | Allocations: 2180)
+  Rendered requests/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2248)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 2964)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:14:56 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 65.1ms | Allocations: 2576)
+  Rendered requests/new.html.erb within layouts/application (Duration: 67.3ms | Allocations: 2887)
+Completed 200 OK in 81ms (Views: 79.3ms | ActiveRecord: 0.0ms | Allocations: 4503)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:15:23 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 37.7ms | Allocations: 2563)
+  Rendered requests/new.html.erb within layouts/application (Duration: 39.1ms | Allocations: 2874)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.0ms | Allocations: 4490)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:16:05 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 25.6ms | Allocations: 2556)
+  Rendered requests/new.html.erb within layouts/application (Duration: 27.4ms | Allocations: 2867)
+Completed 200 OK in 35ms (Views: 33.9ms | ActiveRecord: 0.0ms | Allocations: 4483)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:18:47 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 7.1ms | Allocations: 2596)
+  Rendered requests/new.html.erb within layouts/application (Duration: 8.5ms | Allocations: 2908)
+Completed 200 OK in 18ms (Views: 16.6ms | ActiveRecord: 0.0ms | Allocations: 4531)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:19:54 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 39.7ms | Allocations: 2599)
+  Rendered requests/new.html.erb within layouts/application (Duration: 41.2ms | Allocations: 2910)
+Completed 200 OK in 49ms (Views: 47.9ms | ActiveRecord: 0.0ms | Allocations: 4526)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:29:16 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 25.5ms | Allocations: 2356)
+  Rendered requests/new.html.erb within layouts/application (Duration: 26.9ms | Allocations: 2667)
+Completed 200 OK in 35ms (Views: 33.7ms | ActiveRecord: 0.0ms | Allocations: 4283)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 13:29:52 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  Rendered requests/_form.html.erb (Duration: 5.9ms | Allocations: 2052)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.2ms | Allocations: 2121)
+Completed 200 OK in 51ms (Views: 9.7ms | ActiveRecord: 1.4ms | Allocations: 7521)
+
+
+Started POST "/requests" for 127.0.0.1 at 2020-06-14 13:30:01 -0300
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"rbJh8M82M7+n0HZT09AE8EcXQTAs+mS2vOZVq/R7R8mnJDMHYkemGipQBclRIi9SfsjVbDGmPV5IdcmBy2VlXQ==", "request"=>{"customer_id"=>"1", "mailing"=>"1", "items"=>"asdfasdfasdf", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"14"}, "commit"=>"Create Request"}
+Started GET "/costumers" for 127.0.0.1 at 2020-06-14 13:40:04 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/costumers"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[36mRequest Create (3.4ms)[0m  [1m[32mINSERT INTO "requests" ("customer_id", "mailing", "items", "delivery_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["customer_id", 1], ["mailing", 1], ["items", "asdfasdfasdf"], ["delivery_date", "2020-06-14"], ["created_at", "2020-06-14 16:40:04.716711"], ["updated_at", "2020-06-14 16:40:04.716711"]]
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[35m (11.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+Redirected to http://localhost:5000/requests/1
+Completed 302 Found in 602957ms (ActiveRecord: 18.0ms | Allocations: 125939)
+
+
+Started GET "/costumers" for 127.0.0.1 at 2020-06-14 13:40:28 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/costumers"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2020-06-14 13:40:39 -0300
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 36.9ms | Allocations: 222)
+Completed 200 OK in 45ms (Views: 44.0ms | ActiveRecord: 0.0ms | Allocations: 1660)
+
+
+Started GET "/products" for 127.0.0.1 at 2020-06-14 13:40:42 -0300
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:17
+  Rendered products/index.html.erb within layouts/application (Duration: 26.0ms | Allocations: 4845)
+Completed 200 OK in 62ms (Views: 28.4ms | ActiveRecord: 2.3ms | Allocations: 6865)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 13:41:17 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 1325)
+Completed 200 OK in 25ms (Views: 22.1ms | ActiveRecord: 0.6ms | Allocations: 2657)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 13:41:40 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (1.0ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 28.6ms | Allocations: 535)
+Completed 200 OK in 50ms (Views: 42.1ms | ActiveRecord: 1.0ms | Allocations: 2043)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 13:41:45 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 933)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.4ms | Allocations: 1647)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 13:41:51 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 16.6ms | Allocations: 1589)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 18.1ms | Allocations: 1965)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.7ms | Allocations: 3336)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 13:41:56 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (1.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 945)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 1.2ms | Allocations: 1659)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 13:42:25 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1231)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.4ms | Allocations: 2086)
+
+
+Started GET "/requests/1" for 127.0.0.1 at 2020-06-14 13:42:44 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRequest Load (1.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 18.5ms | Allocations: 455)
+Completed 200 OK in 33ms (Views: 21.6ms | ActiveRecord: 1.3ms | Allocations: 1948)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 13:42:53 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 932)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.5ms | Allocations: 1646)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:00:51 -0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:14
+  Rendered requests/_form.html.erb (Duration: 240.0ms | Allocations: 4925)
+  Rendered requests/new.html.erb within layouts/application (Duration: 243.0ms | Allocations: 5240)
+Completed 200 OK in 266ms (Views: 262.5ms | ActiveRecord: 0.8ms | Allocations: 6865)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:01:23 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/views/requests/new.html.erb:3
+  Rendered requests/_form.html.erb (Duration: 46.1ms | Allocations: 4091)
+  Rendered requests/new.html.erb within layouts/application (Duration: 49.7ms | Allocations: 4383)
+Completed 500 Internal Server Error in 61ms (ActiveRecord: 0.4ms | Allocations: 5362)
+
+
+  
+ActionView::Template::Error (undefined method `to_arr' for #<Customer::ActiveRecord_Relation:0x00007faaec933520>
+Did you mean?  to_a
+               to_ary):
+    11:   <% end %>
+    12:   <div>
+    13:     <div class="input_field">
+    14:       <%= form.select :customer_id, options_for_select(Customer.select(:name, :id).to_arr) %>
+    15:     </div>
+    16:   </div>
+    17:     <div class="input_field">
+  
+app/views/requests/_form.html.erb:14
+app/views/requests/_form.html.erb:1
+app/views/requests/new.html.erb:3
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:01:30 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:14
+  Rendered requests/_form.html.erb (Duration: 32.0ms | Allocations: 2867)
+  Rendered requests/new.html.erb within layouts/application (Duration: 33.9ms | Allocations: 3179)
+Completed 200 OK in 43ms (Views: 41.1ms | ActiveRecord: 0.3ms | Allocations: 4802)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:02:10 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:14:in `map'
+  Rendered requests/_form.html.erb (Duration: 83.3ms | Allocations: 2880)
+  Rendered requests/new.html.erb within layouts/application (Duration: 87.7ms | Allocations: 3191)
+Completed 200 OK in 104ms (Views: 99.8ms | ActiveRecord: 0.7ms | Allocations: 4807)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:03:48 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:14:in `map'
+  Rendered requests/_form.html.erb (Duration: 8.7ms | Allocations: 2875)
+  Rendered requests/new.html.erb within layouts/application (Duration: 26.9ms | Allocations: 3188)
+Completed 200 OK in 35ms (Views: 33.1ms | ActiveRecord: 0.4ms | Allocations: 4804)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:07:00 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 53.9ms | Allocations: 3068)
+  Rendered requests/new.html.erb within layouts/application (Duration: 56.3ms | Allocations: 3380)
+Completed 200 OK in 68ms (Views: 63.4ms | ActiveRecord: 0.5ms | Allocations: 4996)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:07:18 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 52.8ms | Allocations: 2933)
+  Rendered requests/new.html.erb within layouts/application (Duration: 56.0ms | Allocations: 3245)
+Completed 200 OK in 72ms (Views: 70.4ms | ActiveRecord: 0.3ms | Allocations: 4861)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:19:02 -0300
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 80.1ms | Allocations: 2938)
+  Rendered requests/new.html.erb within layouts/application (Duration: 82.0ms | Allocations: 3250)
+Completed 200 OK in 97ms (Views: 93.9ms | ActiveRecord: 0.4ms | Allocations: 4866)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:19:32 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 5.0ms | Allocations: 2549)
+  Rendered requests/new.html.erb within layouts/application (Duration: 5.3ms | Allocations: 2618)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.3ms | Allocations: 3334)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:19:33 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (1.1ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 8.8ms | Allocations: 2542)
+  Rendered requests/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 2610)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 1.1ms | Allocations: 3325)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:20:08 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 147.4ms | Allocations: 2933)
+  Rendered requests/new.html.erb within layouts/application (Duration: 150.3ms | Allocations: 3246)
+Completed 200 OK in 165ms (Views: 160.7ms | ActiveRecord: 0.5ms | Allocations: 4866)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:21:13 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 20.0ms | Allocations: 2554)
+  Rendered requests/new.html.erb within layouts/application (Duration: 25.0ms | Allocations: 2623)
+Completed 200 OK in 39ms (Views: 37.3ms | ActiveRecord: 0.8ms | Allocations: 3339)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:21:21 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.9ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 10.1ms | Allocations: 2536)
+  Rendered requests/new.html.erb within layouts/application (Duration: 10.6ms | Allocations: 2604)
+Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 0.9ms | Allocations: 3320)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:21:25 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 5.2ms | Allocations: 2534)
+  Rendered requests/new.html.erb within layouts/application (Duration: 6.3ms | Allocations: 2602)
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.3ms | Allocations: 3317)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:22:14 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.8ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 9.5ms | Allocations: 2544)
+  Rendered requests/new.html.erb within layouts/application (Duration: 9.9ms | Allocations: 2612)
+Completed 200 OK in 14ms (Views: 12.9ms | ActiveRecord: 0.8ms | Allocations: 3327)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:22:23 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 67.5ms | Allocations: 2933)
+  Rendered requests/new.html.erb within layouts/application (Duration: 68.7ms | Allocations: 3247)
+Completed 200 OK in 75ms (Views: 73.9ms | ActiveRecord: 0.3ms | Allocations: 4868)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:23:50 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 53.0ms | Allocations: 2929)
+  Rendered requests/new.html.erb within layouts/application (Duration: 55.3ms | Allocations: 3241)
+Completed 200 OK in 65ms (Views: 63.4ms | ActiveRecord: 0.5ms | Allocations: 4857)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:25:22 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 4.4ms | Allocations: 2551)
+  Rendered requests/new.html.erb within layouts/application (Duration: 4.7ms | Allocations: 2620)
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.3ms | Allocations: 3336)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:25:22 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (1.0ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 16.5ms | Allocations: 2542)
+  Rendered requests/new.html.erb within layouts/application (Duration: 18.3ms | Allocations: 2610)
+Completed 200 OK in 26ms (Views: 21.6ms | ActiveRecord: 1.0ms | Allocations: 3325)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:25:57 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 8.9ms | Allocations: 2544)
+  Rendered requests/new.html.erb within layouts/application (Duration: 9.4ms | Allocations: 2612)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.7ms | Allocations: 3327)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:25:58 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 7.4ms | Allocations: 2538)
+  Rendered requests/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 2606)
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.4ms | Allocations: 3321)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:26:03 -0300
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 7.5ms | Allocations: 2536)
+  Rendered requests/new.html.erb within layouts/application (Duration: 7.9ms | Allocations: 2604)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.4ms | Allocations: 3319)
+
+
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:31:24 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (27.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.3.1) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.3.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameColumnMailing (20200614172747)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (22.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arequests" ("id" integer NOT NULL PRIMARY KEY, "customer_id" integer NOT NULL, "delivery" boolean DEFAULT NULL, "items" text DEFAULT NULL, "delivery_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_arequests_on_customer_id" ON "arequests" ("customer_id")[0m
+  [1m[35m (13.7ms)[0m  [1m[32mINSERT INTO "arequests" ("id","customer_id","delivery","items","delivery_date","created_at","updated_at")
+                     SELECT "id","customer_id","mailing","items","delivery_date","created_at","updated_at" FROM "requests"[0m
+  [1m[35m (34.8ms)[0m  [1m[35mDROP TABLE "requests"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "requests" ("id" integer NOT NULL PRIMARY KEY, "customer_id" integer NOT NULL, "delivery" boolean DEFAULT NULL, "items" text DEFAULT NULL, "delivery_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_4240dbfa6b"
+FOREIGN KEY ("customer_id")
+  REFERENCES "customers" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_requests_on_customer_id" ON "requests" ("customer_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "requests" ("id","customer_id","delivery","items","delivery_date","created_at","updated_at")
+                     SELECT "id","customer_id","delivery","items","delivery_date","created_at","updated_at" FROM "arequests"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "arequests"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614172747"]]
+  [1m[35m (11.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/requests/new" for 127.0.0.1 at 2020-06-14 14:39:08 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RequestsController#new as HTML
+  Rendering requests/new.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 42.9ms | Allocations: 7957)
+  Rendered requests/new.html.erb within layouts/application (Duration: 45.1ms | Allocations: 8273)
+Completed 200 OK in 78ms (Views: 52.0ms | ActiveRecord: 0.3ms | Allocations: 14010)
+
+
+Started POST "/requests" for 127.0.0.1 at 2020-06-14 14:40:49 -0300
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"wCWozsh2m68P++kOW1FrhH1l4jil3rqxdgb5V4nMxurKs/o5ZQcOCoJ7mpTZo0AmRLp2ZLiC41mClWV9ttLkfg==", "request"=>{"customer_id"=>"1", "delivery"=>"1", "items"=>"1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"15"}, "commit"=>"Create Request"}
+[31mUnpermitted parameter: :delivery[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[36mCustomer Load (2.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[36mRequest Create (4.7ms)[0m  [1m[32mINSERT INTO "requests" ("customer_id", "items", "delivery_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["customer_id", 1], ["items", "1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11"], ["delivery_date", "2020-06-15"], ["created_at", "2020-06-14 17:40:49.136636"], ["updated_at", "2020-06-14 17:40:49.136636"]]
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+  [1m[35m (19.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:31:in `block in create'
+Redirected to http://localhost:5000/requests/2
+Completed 302 Found in 68ms (ActiveRecord: 26.5ms | Allocations: 7282)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:40:49 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 10.1ms | Allocations: 1297)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.4ms | Allocations: 2333)
+
+
+  
+ActionView::Template::Error (missing attribute: mailing):
+     7: 
+     8: <p>
+     9:   <strong>Mailing:</strong>
+    10:   <%= @request.mailing %>
+    11: </p>
+    12: 
+    13: <p>
+  
+app/views/requests/show.html.erb:10
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:41:38 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1295)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms | Allocations: 2792)
+
+
+  
+ActionView::Template::Error (missing attribute: mailing):
+     7: 
+     8: <p>
+     9:   <strong>Mailing:</strong>
+    10:   <%= @request.mailing %>
+    11: </p>
+    12: 
+    13: <p>
+  
+app/views/requests/show.html.erb:10
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:42:04 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 16.8ms | Allocations: 521)
+Completed 200 OK in 25ms (Views: 22.9ms | ActiveRecord: 0.3ms | Allocations: 2659)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 14:42:37 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 19.9ms | Allocations: 2971)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 41.3ms | Allocations: 3333)
+Completed 200 OK in 52ms (Views: 48.0ms | ActiveRecord: 1.1ms | Allocations: 4702)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:42:50 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.6ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 255)
+Completed 200 OK in 9ms (Views: 6.0ms | ActiveRecord: 0.6ms | Allocations: 1488)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 14:42:57 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 4.2ms | Allocations: 2567)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 4.5ms | Allocations: 2665)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.6ms | Allocations: 3897)
+
+
+Started PATCH "/requests/2" for 127.0.0.1 at 2020-06-14 14:42:59 -0300
+Processing by RequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"mhtjYewMlbm6hHSZ/tKDs5rUMDGe7Rdj3R0Nl9abWrCQjTGWQX0AHDcEBwN8IKgRowukbYOxTospjpG96YV4JA==", "request"=>{"customer_id"=>"1", "delivery"=>"1", "items"=>"1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"15"}, "commit"=>"Update Request", "id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+[31mUnpermitted parameter: :delivery[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+Redirected to http://localhost:5000/requests/2
+Completed 302 Found in 40ms (ActiveRecord: 0.7ms | Allocations: 3896)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:42:59 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 288)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.4ms | Allocations: 1520)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 14:43:05 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.9ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 25.7ms | Allocations: 1369)
+Completed 200 OK in 34ms (Views: 30.7ms | ActiveRecord: 0.9ms | Allocations: 2223)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:43:40 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 274)
+Completed 200 OK in 26ms (Views: 5.4ms | ActiveRecord: 1.8ms | Allocations: 6406)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 14:43:42 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.8ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 33.6ms | Allocations: 8007)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 34.5ms | Allocations: 8106)
+Completed 200 OK in 44ms (Views: 38.1ms | ActiveRecord: 2.6ms | Allocations: 9338)
+
+
+Started PATCH "/requests/2" for 127.0.0.1 at 2020-06-14 14:43:44 -0300
+Processing by RequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"7uSzPLHBP/A0FUEKmLgu3MGKMp9wwsiNm99+ofEEuh7kcuHLHLCqVbmVMpAaSgV++FWmw22ekWVvTOKLzhqYig==", "request"=>{"customer_id"=>"1", "delivery"=>"1", "items"=>"1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"15"}, "commit"=>"Update Request", "id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mRequest Update (2.1ms)[0m  [1m[33mUPDATE "requests" SET "delivery" = ?, "updated_at" = ? WHERE "requests"."id" = ?[0m  [["delivery", 1], ["updated_at", "2020-06-14 17:43:44.659205"], ["id", 2]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[35m (24.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+Redirected to http://localhost:5000/requests/2
+Completed 302 Found in 43ms (ActiveRecord: 27.5ms | Allocations: 6574)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:43:44 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 267)
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.3ms | Allocations: 1499)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 14:43:47 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (1.1ms)[0m  [1m[34mSELECT "requests".* FROM "requests"[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1085)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 1.1ms | Allocations: 1798)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:44:02 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 252)
+Completed 200 OK in 10ms (Views: 4.3ms | ActiveRecord: 0.5ms | Allocations: 1484)
+
+
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.8ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= 2020-06-14) LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > 2020-06-14) LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.6ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > 2020-06-14) LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14') LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > 2020-06-14) LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > 2020-06-14) LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14') LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 14:58:34 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 10.5ms | Allocations: 4647)
+Completed 200 OK in 18ms (Views: 14.3ms | ActiveRecord: 0.3ms | Allocations: 6083)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 14:58:37 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 943)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 1673)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 14:58:49 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 11.0ms | Allocations: 5146)
+Completed 200 OK in 18ms (Views: 12.6ms | ActiveRecord: 1.8ms | Allocations: 6581)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 14:58:58 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.8ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 255)
+Completed 200 OK in 14ms (Views: 8.3ms | ActiveRecord: 0.8ms | Allocations: 1612)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:18:38 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 11.1ms | Allocations: 4797)
+Completed 200 OK in 21ms (Views: 15.2ms | ActiveRecord: 0.4ms | Allocations: 6235)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:21:13 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.7ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 71.5ms | Allocations: 1376)
+Completed 200 OK in 82ms (Views: 79.3ms | ActiveRecord: 0.7ms | Allocations: 3013)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:21:27 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 19.2ms | Allocations: 1368)
+Completed 200 OK in 29ms (Views: 25.1ms | ActiveRecord: 0.4ms | Allocations: 3000)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:22:14 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 45.2ms | Allocations: 1369)
+Completed 200 OK in 53ms (Views: 51.2ms | ActiveRecord: 0.5ms | Allocations: 3002)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:22:19 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 465)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 0.4ms | Allocations: 1965)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:22:47 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 465)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.4ms | Allocations: 2603)
+
+
+Started GET "/produtos" for 127.0.0.1 at 2020-06-14 15:23:10 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/produtos"):
+  
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/products" for 127.0.0.1 at 2020-06-14 15:23:15 -0300
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:17
+  Rendered products/index.html.erb within layouts/application (Duration: 35.0ms | Allocations: 4605)
+Completed 200 OK in 49ms (Views: 41.6ms | ActiveRecord: 1.5ms | Allocations: 6561)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2020-06-14 15:23:22 -0300
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:67:in `set_product'
+  Rendering products/show.html.erb within layouts/application
+  Rendered products/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 472)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.4ms | Allocations: 1962)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:28:36 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.6ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 23.8ms | Allocations: 1373)
+Completed 200 OK in 35ms (Views: 31.6ms | ActiveRecord: 0.6ms | Allocations: 3010)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:29:50 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1356)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.4ms | Allocations: 2988)
+
+
+Started GET "/requests/1" for 127.0.0.1 at 2020-06-14 15:29:53 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 2.5ms | Allocations: 455)
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 0.4ms | Allocations: 1828)
+
+
+Started GET "/requests/1/edit" for 127.0.0.1 at 2020-06-14 15:30:06 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRequest Load (1.1ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 29.6ms | Allocations: 10089)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 63.1ms | Allocations: 10471)
+Completed 200 OK in 72ms (Views: 66.3ms | ActiveRecord: 2.5ms | Allocations: 11840)
+
+
+Started GET "/requests/1/edit" for 127.0.0.1 at 2020-06-14 15:30:54 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 32.5ms | Allocations: 2826)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 34.0ms | Allocations: 3208)
+Completed 200 OK in 43ms (Views: 40.3ms | ActiveRecord: 0.6ms | Allocations: 5341)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:31:05 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1366)
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 0.4ms | Allocations: 2236)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 15:38:53 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 16.0ms | Allocations: 2452)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 16.8ms | Allocations: 2567)
+Completed 200 OK in 35ms (Views: 30.6ms | ActiveRecord: 1.1ms | Allocations: 3820)
+
+
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 15:44:18 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.7ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 43.4ms | Allocations: 2871)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 46.7ms | Allocations: 3258)
+Completed 200 OK in 61ms (Views: 55.0ms | ActiveRecord: 1.2ms | Allocations: 5417)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:44:31 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.2ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 470)
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.2ms | Allocations: 1844)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 15:44:49 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 4.4ms | Allocations: 2457)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 4.9ms | Allocations: 2572)
+Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 0.8ms | Allocations: 3806)
+
+
+Started PATCH "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:02 -0300
+Processing by RequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"TGoPbMa411QdniGqD6xiKA8S2cQjTEgk/Q7Usf03yt9G/F2ba8lC8ZAeUjCNXkmKNs1NmD4QEcwJnUibwinoSw==", "request"=>{"customer_id"=>"1", "delivery"=>"0", "items"=>"1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"15"}, "button"=>"", "id"=>"2"}
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mRequest Update (5.1ms)[0m  [1m[33mUPDATE "requests" SET "delivery" = ?, "updated_at" = ? WHERE "requests"."id" = ?[0m  [["delivery", 0], ["updated_at", "2020-06-14 18:50:02.091195"], ["id", 2]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[35m (40.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+Redirected to http://localhost:5000/requests/2
+Completed 302 Found in 69ms (ActiveRecord: 46.9ms | Allocations: 7043)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:02 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 273)
+Completed 200 OK in 13ms (Views: 7.4ms | ActiveRecord: 0.3ms | Allocations: 1505)
+
+
+Started GET "/requests" for 127.0.0.1 at 2020-06-14 15:50:05 -0300
+Processing by RequestsController#index as HTML
+  Rendering requests/index.html.erb within layouts/application
+  [1m[36mRequest Load (0.7ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date >= '2020-06-14')[0m
+  ↳ app/views/requests/index.html.erb:17
+  Rendered requests/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1385)
+Completed 200 OK in 23ms (Views: 18.8ms | ActiveRecord: 0.7ms | Allocations: 2256)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 15:50:07 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.6ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 4.6ms | Allocations: 2448)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 5.0ms | Allocations: 2563)
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 0.9ms | Allocations: 3796)
+
+
+Started PATCH "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:10 -0300
+Processing by RequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"r55Ht4pOFYoTz8m3hc8bw5FoBA/sVDD/wrppp7yyT6WlCBVAJz+AL55Pui0HPTBhqLeQU/EIaRc2KfWNg6xtMQ==", "request"=>{"customer_id"=>"1", "delivery"=>"1", "items"=>"1 Bolo Floresta negra 1,5kg\r\n100 brigadeiros\r\n100 coxinhas\r\nEntregar às 14h00 no endereço Rua Bartolomeu Hidalgo, 11", "delivery_date(1i)"=>"2020", "delivery_date(2i)"=>"6", "delivery_date(3i)"=>"15"}, "button"=>"", "id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[36mRequest Update (8.7ms)[0m  [1m[33mUPDATE "requests" SET "delivery" = ?, "updated_at" = ? WHERE "requests"."id" = ?[0m  [["delivery", 1], ["updated_at", "2020-06-14 18:50:10.112392"], ["id", 2]]
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+  [1m[35m (32.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/requests_controller.rb:45:in `block in update'
+Redirected to http://localhost:5000/requests/2
+Completed 302 Found in 68ms (ActiveRecord: 42.5ms | Allocations: 7233)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:10 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 275)
+Completed 200 OK in 10ms (Views: 6.5ms | ActiveRecord: 0.4ms | Allocations: 1507)
+
+
+Started GET "/requests/2/edit" for 127.0.0.1 at 2020-06-14 15:50:12 -0300
+Processing by RequestsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/edit.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers"."name", "customers"."id" FROM "customers"[0m
+  ↳ app/views/requests/_form.html.erb:16:in `map'
+  Rendered requests/_form.html.erb (Duration: 7.4ms | Allocations: 2458)
+  Rendered requests/edit.html.erb within layouts/application (Duration: 7.8ms | Allocations: 2572)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.7ms | Allocations: 3805)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:15 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.8ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 266)
+Completed 200 OK in 7ms (Views: 3.8ms | ActiveRecord: 0.8ms | Allocations: 1498)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:50:47 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.2ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 29.5ms | Allocations: 472)
+Completed 200 OK in 41ms (Views: 38.9ms | ActiveRecord: 0.2ms | Allocations: 2613)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:51:41 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 24.5ms | Allocations: 467)
+Completed 200 OK in 35ms (Views: 32.4ms | ActiveRecord: 0.4ms | Allocations: 2603)
+
+
+Started GET "/requests/2" for 127.0.0.1 at 2020-06-14 15:51:42 -0300
+Processing by RequestsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRequest Load (0.3ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE "requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:68:in `set_request'
+  Rendering requests/show.html.erb within layouts/application
+  Rendered requests/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 253)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1486)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 15:52:31 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 11.5ms | Allocations: 1319)
+Completed 200 OK in 19ms (Views: 16.8ms | ActiveRecord: 0.5ms | Allocations: 2657)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 15:52:35 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 20.8ms | Allocations: 528)
+Completed 200 OK in 29ms (Views: 24.9ms | ActiveRecord: 0.5ms | Allocations: 2004)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 15:53:49 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 933)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.5ms | Allocations: 1647)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 15:53:52 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 267)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.4ms | Allocations: 1501)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 15:53:54 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 932)
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.6ms | Allocations: 1645)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 15:53:55 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 21.1ms | Allocations: 1593)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 30.8ms | Allocations: 1975)
+Completed 200 OK in 37ms (Views: 34.5ms | ActiveRecord: 0.3ms | Allocations: 3346)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 15:54:01 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 267)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.4ms | Allocations: 1504)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 15:54:05 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 13.2ms | Allocations: 936)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.4ms | Allocations: 1650)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 15:54:07 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 3.1ms | Allocations: 1056)
+  Rendered customers/new.html.erb within layouts/application (Duration: 5.5ms | Allocations: 1246)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.0ms | Allocations: 2101)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 15:56:53 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 94.4ms | Allocations: 3393)
+  Rendered customers/new.html.erb within layouts/application (Duration: 96.2ms | Allocations: 3716)
+Completed 200 OK in 107ms (Views: 104.6ms | ActiveRecord: 0.0ms | Allocations: 5340)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 15:57:09 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 1242)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.3ms | Allocations: 2097)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 16:03:26 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 2.6ms | Allocations: 1132)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1377)
+Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 2774)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 16:03:29 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 518)
+Completed 200 OK in 10ms (Views: 6.4ms | ActiveRecord: 0.7ms | Allocations: 1895)
+
+
+  [1m[36mRequest Load (0.5ms)[0m  [1m[34mSELECT "requests".* FROM "requests" WHERE (delivery_date > '2020-06-14')[0m
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:13:30 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.3.1) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.3.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.2) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.2) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.2) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.1) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.1) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddTelephoneToCustomer (20200614190443)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "customers" ADD "phone1" varchar[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "customers" ADD "phone2" varchar[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "customers" ADD "mailing" boolean[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200614190443"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (20.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:14:14 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:21
+  Rendered customers/index.html.erb within layouts/application (Duration: 18.5ms | Allocations: 7878)
+Completed 200 OK in 32ms (Views: 23.5ms | ActiveRecord: 2.2ms | Allocations: 10322)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:17:14 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:24
+  Rendered customers/index.html.erb within layouts/application (Duration: 20.8ms | Allocations: 1297)
+Completed 200 OK in 31ms (Views: 28.6ms | ActiveRecord: 0.4ms | Allocations: 2919)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:17:36 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:24
+  Rendered customers/index.html.erb within layouts/application (Duration: 39.7ms | Allocations: 1253)
+Completed 200 OK in 56ms (Views: 52.1ms | ActiveRecord: 0.6ms | Allocations: 2869)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:18:08 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 22.0ms | Allocations: 1259)
+Completed 200 OK in 30ms (Views: 28.7ms | ActiveRecord: 0.4ms | Allocations: 2875)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 16:19:31 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.7ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 19.2ms | Allocations: 579)
+Completed 200 OK in 36ms (Views: 29.9ms | ActiveRecord: 0.7ms | Allocations: 2856)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 16:25:20 -0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 25.2ms | Allocations: 1291)
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.5ms | Allocations: 2146)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 17:04:44 -0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 969)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.5ms | Allocations: 1683)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 17:04:50 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 271)
+Completed 200 OK in 11ms (Views: 7.8ms | ActiveRecord: 0.4ms | Allocations: 1534)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 17:04:53 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 97.7ms | Allocations: 3712)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 99.7ms | Allocations: 4094)
+Completed 200 OK in 106ms (Views: 103.6ms | ActiveRecord: 0.3ms | Allocations: 5466)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 17:05:32 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 33.4ms | Allocations: 1841)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 35.0ms | Allocations: 2226)
+Completed 200 OK in 43ms (Views: 40.9ms | ActiveRecord: 0.3ms | Allocations: 4367)
+
+
+Started PATCH "/customers/1" for 127.0.0.1 at 2020-06-14 17:06:50 -0300
+Processing by CustomersController#update as HTML
+  Parameters: {"authenticity_token"=>"AO7NM6RVsaDPkJzPji6EltXP8WOA+2RTE8oBxrUiT7kKeJ/ECSQkBUIQ71UM3K807BBlP52nPbvnWZ3sijxtLQ==", "customer"=>{"name"=>"Guilherme Ibanhez", "phone1"=>"11941932833", "phone2"=>"", "mailing"=>"1", "email"=>"guilherme.ibanhez@gmail.com", "address"=>"rua doutor silvio dante bertacchi", "number"=>"230", "neighborhood"=>"Vila Sônia", "cep"=>"05625000"}, "button"=>"", "id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/customers_controller.rb:44:in `block in update'
+  [1m[36mCustomer Update (2.1ms)[0m  [1m[33mUPDATE "customers" SET "phone1" = ?, "phone2" = ?, "mailing" = ?, "updated_at" = ? WHERE "customers"."id" = ?[0m  [["phone1", "11941932833"], ["phone2", ""], ["mailing", 1], ["updated_at", "2020-06-14 20:06:50.994320"], ["id", 1]]
+  ↳ app/controllers/customers_controller.rb:44:in `block in update'
+  [1m[35m (12.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/customers_controller.rb:44:in `block in update'
+Redirected to http://localhost:5000/customers/1
+Completed 302 Found in 23ms (ActiveRecord: 14.7ms | Allocations: 4309)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 17:06:51 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 605)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.3ms | Allocations: 2750)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 17:06:55 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1274)
+Completed 200 OK in 13ms (Views: 12.0ms | ActiveRecord: 0.3ms | Allocations: 2129)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2020-06-14 17:06:58 -0300
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (1.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 278)
+Completed 200 OK in 8ms (Views: 4.5ms | ActiveRecord: 1.2ms | Allocations: 1516)
+
+
+Started GET "/customers/1/edit" for 127.0.0.1 at 2020-06-14 17:07:08 -0300
+Processing by CustomersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.3ms)[0m  [1m[34mSELECT "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/customers_controller.rb:67:in `set_customer'
+  Rendering customers/edit.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 60.4ms | Allocations: 1864)
+  Rendered customers/edit.html.erb within layouts/application (Duration: 62.2ms | Allocations: 2246)
+Completed 200 OK in 68ms (Views: 65.8ms | ActiveRecord: 0.3ms | Allocations: 3620)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 17:07:13 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 941)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.4ms | Allocations: 1655)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2020-06-14 17:07:18 -0300
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (Duration: 2.7ms | Allocations: 1216)
+  Rendered customers/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1404)
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.0ms | Allocations: 2261)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 17:07:21 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.5ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 947)
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.5ms | Allocations: 1661)
+
+
+Started GET "/customers" for 127.0.0.1 at 2020-06-14 17:09:02 -0300
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  ↳ app/views/customers/index.html.erb:22
+  Rendered customers/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 936)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.4ms | Allocations: 1649)
+
+

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<h1>Informações do Cliente</h1>
+<p>
+  <strong>Nome:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Telefone 1:</strong>
+  <%= @customer.phone1 %>
+</p>
+
+<p>
+  <strong>Telefone 2:</strong>
+  <%= @customer.phone2 %>
+</p>
+
+<p>
+  <strong>Mailing:</strong>
+  <%= @customer.mailing %>
+</p>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Endereço:</strong>
+  <%= @customer.address %>
+</p>
+
+<p>
+  <strong>Número:</strong>
+  <%= @customer.number %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @customer.neighborhood %>
+</p>
+
+<p>
+  <strong>Cep:</strong>
+  <%= @customer.cep %>
+</p>
+
+<%= link_to 'Editar', edit_customer_path(@customer), class: "blue-grey btn waves-effect waves-light" %> 
+<%= link_to 'Voltar', customers_path, class: "blue-grey btn waves-effect waves-light" %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<h1>Informações da Encomenda</h1>
+<p>
+  <strong>Cliente:</strong>
+  <%= @request.customer_id %>
+</p>
+
+<p>
+  <strong>Delivery:</strong>
+  <%= @request.delivery %>
+</p>
+
+<p class='pre-line neg-margin15'>
+  <strong>Itens:</strong>
+  <%= @request.items %>
+</p>
+
+<p>
+  <strong>Data de entrega:</strong>
+  <%= @request.delivery_date %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

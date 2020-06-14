@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Encomendas</h1>
+<%= link_to 'Nova Encomenda', new_request_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Delivery</th>
+      <th>Itens</th>
+      <th>Data de Entrega</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.customer_id %></td>
+        <td><%= request.delivery %></td>
+        <td class="pre-line"><%= request.items %></td>
+        <td><%= request.delivery_date %></td>
+        <td><%= link_to 'Exibir', request %></td>
+        <td><%= link_to 'Editar', edit_request_path(request) %></td>
+        <td><%= link_to 'Apagar', request, method: :delete, data: { confirm: 'Tem certeza de que deseja apagar o registro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

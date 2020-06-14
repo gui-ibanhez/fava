@@ -1,0 +1,67 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+        <% customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input_field">
+    <%= form.label :name, 'Nome' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :phone1, 'Telefone1' %>
+    <%= form.telephone_field :phone1 %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :phone2, 'Telefone2' %>
+    <%= form.telephone_field :phone2 %>
+  </div>
+
+  <div class="input_field">
+    <label for="customer_mailing">
+      <input name="customer[mailing]" type="hidden" value="0">
+      <input type="checkbox" value="1" name="customer[mailing]" id="customer_mailing" <%= customer.mailing ? "checked" : "" %>>
+      <span>Aceita entrar no Mailing </span>
+    </label>
+  </div>
+
+
+
+  <div class="input_field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :address, 'Endereço' %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :number, 'Número' %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :neighborhood, 'Bairro' %>
+    <%= form.text_field :neighborhood %>
+  </div>
+
+  <div class="input_field">
+    <%= form.label :cep %>
+    <%= form.text_field :cep %>
+  </div>
+
+  <div class="actions">
+    <%= form.button '<i class="material-icons right">save</i>Salvar'.html_safe, class: "blue-grey btn waves-effect waves-light" %>
+  </div>
+<% end %>

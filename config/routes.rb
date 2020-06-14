@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :requests
+  resources :order_items
+  resources :orders
+  resources :customers
+  get 'pdv/index'
   resources :products
   root 'welcome#index'
   get '/welcome', to: 'welcome#index'

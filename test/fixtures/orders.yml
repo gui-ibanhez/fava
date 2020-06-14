@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  value: 
+  value: 
+  discount: 
+  discount: 
+  payment: MyString
+  origin: MyString
+  request_ahead: false
+
+two:
+  customer: two
+  value: 
+  value: 
+  discount: 
+  discount: 
+  payment: MyString
+  origin: MyString
+  request_ahead: false
