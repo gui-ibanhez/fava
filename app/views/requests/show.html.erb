@@ -2,7 +2,9 @@
 <h1>Informações da Encomenda</h1>
 <p>
   <strong>Cliente:</strong>
-  <%= @request.customer_id %>
+  <%= link_to customer_path(@request.customer) do %>
+    <%= @request.customer.name %>
+  <% end %>
 </p>
 
 <p>
@@ -20,5 +22,5 @@
   <%= @request.delivery_date %>
 </p>
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Editar', edit_request_path(@request), class: "blue-grey btn waves-effect waves-light" %> 
+<%= link_to 'Voltar', requests_path, class: "blue-grey btn waves-effect waves-light" %>

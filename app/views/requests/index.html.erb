@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Encomendas</h1>
-<%= link_to 'Nova Encomenda', new_request_path %>
+<%= link_to '<i class="material-icons left">assignment</i>Nova encomenda'.html_safe, 
+            new_request_path, 
+            class: 'blue-grey btn waves-effect waves-light' %>
 <table>
   <thead>
     <tr>

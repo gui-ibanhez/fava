@@ -1,0 +1,65 @@
+(function(){
+    const gera_troco = function(){
+        const pagamento = document.getElementById('pdv_pagamento')
+                            .childNodes[0].childNodes[0]; 
+        const troco = document.getElementById('pdv_troco').childNodes[0];
+        const total = document.getElementById('pdv_total').childNodes[0];
+        troco.innerText = parseFloat(pagamento.value) - parseFloat(total.textContent)
+    };
+
+    const tbody = document.getElementsByTagName('tbody')
+    const row = document.createElement("tr");
+
+    let cell = document.createElement("td");
+    let cellText = document.createTextNode('<%= @product.id %>');
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+
+    cell = document.createElement("td");
+    cellText = document.createTextNode('<%= @product.nome %>');
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+
+    let input = document.createElement("input");
+    input.setAttribute("type", "number");
+    cellText = document.createTextNode('0');
+    input.appendChild(cellText);
+    input.value = 0
+    input.appendChild(cellText);
+    row.appendChild(input);
+
+    cell = document.createElement("td");
+    cellText = document.createTextNode('<%= @product.preco %>');
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+
+    let subtotal = document.createElement("td");
+    cellText = document.createTextNode('0');
+    subtotal.appendChild(cellText);
+    subtotal.className = 'subtotal'
+    row.appendChild(subtotal);
+
+    cell = document.createElement("td");
+    const apagar_div = document.createElement("div");
+    const apagar = document.createElement("span");
+    apagar.className = "material-icons left"
+    cellText = document.createTextNode('delete_forever');
+    apagar.appendChild(cellText);
+    apagar_div.appendChild(apagar);
+    cell.appendChild(apagar_div);
+    row.appendChild(cell);
+
+    input.addEventListener("change", ()=>{
+        let total = input.nextElementSibling.nextElementSibling
+        let preco = input.nextElementSibling
+        total.textContent = parseInt(input.value) * parseInt(preco.textContent)
+        gera_troco()
+    })
+
+    apagar_div.addEventListener('click', ()=>{
+        apagar_div.parentNode.parentNode.remove()
+        gera_troco()
+    })
+
+    tbody[0].appendChild(row);
+})();

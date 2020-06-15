@@ -25,12 +25,12 @@
   </div>
   <div class="input_field">
     <%= form.label :items %>
-    <%= form.text_area :items %>
+    <%= form.text_area :items, class: "materialize-textarea" %>
   </div>
   <div class="row">
     <div class="padz input_field col s3">
       <%= form.label :delivery_date, 'Data de Entrega' %>
-      <%= form.date_select :delivery_date %>
+      <%= form.text_field :delivery_date, class:'datepicker' %>
     </div>
   </div>
   <div class="actions">
