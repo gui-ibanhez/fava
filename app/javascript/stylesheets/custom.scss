@@ -21,4 +21,50 @@ html, body{
 
 #pdv_total{
     size: 3rem;
+    color:red;
+    font-weight: bold;
+}
+
+#pdv_pagamento{
+    font-size: 1.64rem;
+    color: darkblue;
+    font-weight: bold;
+}
+
+#pdv_troco{
+    color: darkgreen;
+    font-weight: bold;
+}
+
+input.pdv_input[type="number"]{
+    border-bottom: none;
+    width: 33%;
+    text-align:center;
+}
+
+table{
+    width: 100%;
+}
+
+th.pdv_cod{
+    width: 10%;
+}
+th.pdv_prod{
+    width: 30%;
+}
+
+th.pdv_qty,
+th.pdv_value, th.pdv_sub,
+th.pdv_del{
+    width: 15%;
+}
+
+.pdv_total_td{
+    width: 85%;
+}
+
+input.pdv_input[type='number']::-webkit-inner-spin-button, 
+input.pdv_input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
 }

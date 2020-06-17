@@ -1,5 +1,5 @@
 <h1>Fava de Baunilha - PDV  </h1>
-<%= form_with url: "/pdv/get_items", remote: true, method: 'get' do |form| %>
+<%= form_with url: "/pdv/get_products", remote: true, method: 'get' do |form| %>
   <div class='col s6 padz'>
     <div class="input_field">
       <%= form.label :customer, 'Cliente'%>
@@ -7,6 +7,20 @@
     options_for_select(Customer.select(:id, :name).map { |e| [e.name, e.id]}) %>
     </div>
   </div>
+    <div class="field">
+    <%= form.label :origin, 'Origem' %>
+    <%= form.select :origin,  
+    options_for_select(Origin.select(:id, :name).map { |e| [e.name, e.id]})%>
+  </div>
+  <br>
+  <div class="input_field">
+    <label for="pdv_request_ahead">
+      <input name="pdv[request_ahead]" type="hidden" value="0">
+      <input type="checkbox" value="1" name="pdv[request_ahead]" id="pdv_request_ahead">
+      <span>Encomenda </span>
+    </label>
+  </div>
+  <br>
   <div class='row'>
     <div class='col s6 padz'>
       <div class="input_field">
@@ -17,12 +31,12 @@
     </div>
     <div class='col s6 center' id='pdv_button'>
       <div class="input_field inline">
-        <%= form.button '<i class="material-icons left">add_shopping_cart</i>Adicionar'.html_safe, class: "blue-grey btn waves-effect waves-light pulse" %>
+        <%= form.button '<i class="material-icons left">add_shopping_cart</i>Adicionar'.html_safe, class: "blue-grey btn waves-effect waves-light" %>
       </div>
     </div>
   </div>
 <% end %>
-<table>
+<table class="centered highlight">
   <thead>
     <tr>
       <th>Cod.</th>
@@ -38,19 +52,19 @@
 <tfoot>
 <tr>
 <td colspan="4"><h5>Total</h5></td>
-<td id="pdv_total"><h5>0</h5></td>
+<td id="pdv_total" class='center-align'><h5>0</h5></td>
 <td></td>
 </tr>
 <tr>
 <td colspan="2"><h5>Pagamento</h4></td>
-<td colspan="2"><%= select_tag "payment", options_for_select(PaymentMethod.all.map { |e| [e.name, e.id] })%></td>
-<td id="pdv_pagamento"><span><input type="number" value="0"></span></td>
+<td colspan="2" class='pdv_input'><%= select_tag "payment", options_for_select(PaymentMethod.all.map { |e| [e.name, e.id] })%></td>
+<td class="center-align"><span><input id="pdv_pagamento" type="number" class='pdv_input' value="0"></span></td>
 <td></td>
 </tr>
 <tr>
 <td colspan="4"><h5>Troco</h5></td>
-<td id="pdv_troco"><h5>0</h5></td>
-<td></td>
+<td id="pdv_troco" class="center-align"><h5>0</h5></td>
+<td><%= link_to 'Concluir', pdv_create_order_path, class: "blue-grey btn waves-effect waves-light", id: "pdv_finish"%></td>
 </tr>
 </tfoot>
 </table>
