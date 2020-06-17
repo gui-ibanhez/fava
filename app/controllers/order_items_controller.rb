@@ -61,6 +61,11 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def list_items
+    @order_items = OrderItem.where(order_id: params[:id])
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order_item

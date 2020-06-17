@@ -64,7 +64,18 @@
 <tr>
 <td colspan="4"><h5>Troco</h5></td>
 <td id="pdv_troco" class="center-align"><h5>0</h5></td>
-<td><%= link_to 'Concluir', pdv_create_order_path, class: "blue-grey btn waves-effect waves-light", id: "pdv_finish"%></td>
+<td><%= link_to 'Concluir', '#', class: "blue-grey btn waves-effect waves-light", id: "pdv_finish"%></td>
 </tr>
 </tfoot>
 </table>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Venda Concluída com Sucesso!</h4>
+      <p>Click em OK para executar a próxima venda.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="/pdv" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+  </div>
