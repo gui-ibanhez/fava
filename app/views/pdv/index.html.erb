@@ -1,4 +1,4 @@
-<h1>Fava de Baunilha - PDV  </h1>
+<h1>Ordem de Venda</h1>
 <%= form_with url: "/pdv/get_products", remote: true, method: 'get' do |form| %>
   <div class='col s6 padz'>
     <div class="input_field">
@@ -7,7 +7,7 @@
     options_for_select(Customer.select(:id, :name).map { |e| [e.name, e.id]}) %>
     </div>
   </div>
-    <div class="field">
+    <div class="input_field">
     <%= form.label :origin, 'Origem' %>
     <%= form.select :origin,  
     options_for_select(Origin.select(:id, :name).map { |e| [e.name, e.id]})%>

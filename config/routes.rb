@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
+  resources :expenses
+  resources :expense_kinds
   resources :payment_methods
   resources :requests
   resources :order_items

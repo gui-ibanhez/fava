@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @expense_kind.name %>
+</p>
+
+<%= link_to 'Edit', edit_expense_kind_path(@expense_kind) %> |
+<%= link_to 'Back', expense_kinds_path %>

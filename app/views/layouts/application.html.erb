@@ -10,8 +10,21 @@
     <%= javascript_pack_tag 'application' %>  </head>
 
   <body>
-  <div class="container">
-    <%= yield %>
-  </div>  
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue-grey">
+          <a href="/" class="brand-logo">Fava de Baunilha</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="https://www.favadebaunilha.com.br" target="_blank">Site</a></li>
+            <li><a href="https://www.instagram.com/favadebaunilhaoficial/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.facebook.com/favadebaunilhaoficial/" target="_blank">Facebook</a></li>
+            <li><a href="https://www.wix.com/dashboard/577aadc6-27f4-41a7-aca0-91441c3a813c/home" target="_blank">Gerenciar Site</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>    
+    <div class="container">
+      <%= yield %>
+    </div>  
   </body>
 </html>

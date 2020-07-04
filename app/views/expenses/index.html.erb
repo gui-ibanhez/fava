@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Despesas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo de Despesa</th>
+      <th>Obs</th>
+      <th>Valor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.kind_of_expense %></td>
+        <td><%= expense.obs %></td>
+        <td><%= expense.value %></td>
+        <td><%= link_to 'Exibir', expense %></td>
+        <td><%= link_to 'Editar', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Apagar', expense, method: :delete, data: { confirm: 'Tem certeza que deseja apagar o registro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova despesa', new_expense_path %>
