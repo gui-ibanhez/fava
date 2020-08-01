@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         for (e of elements) {
             value += parseFloat(e.textContent)
         }
-        total.childNodes[0].innerText = value.toFixed(2)
+        total.firstElementChild.innerText = value.toFixed(2)
     })
 });
 
