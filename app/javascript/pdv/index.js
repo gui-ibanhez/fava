@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         for (e of elements) {
             value += parseFloat(e.textContent)
         }
-        total.childNodes[0].innerText = value.toFixed(2)
+        total.firstElementChild.innerText = value.toFixed(2)
     })
 });
 
@@ -47,10 +47,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const gera_troco = function () {
     const pagamento = document.getElementById('pdv_pagamento');
-    const troco = document.getElementById('pdv_troco').childNodes[0];
-    const total = document.getElementById('pdv_total').childNodes[0];
+    const troco = document.getElementById('pdv_troco').firstElementChild;
+    const total = document.getElementById('pdv_total').firstElementChild;
     troco.innerText = (parseFloat(pagamento.value) - parseFloat(total.textContent)).toFixed(2)
-};
+}
 
 
 const orderPayload = () => {
