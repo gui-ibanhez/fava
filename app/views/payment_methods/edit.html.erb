@@ -1,6 +1,6 @@
-<h1>Editing Payment Method</h1>
+<h1>Editar Forma de Pagamento</h1>
 
 <%= render 'form', payment_method: @payment_method %>
-
-<%= link_to 'Show', @payment_method %> |
-<%= link_to 'Back', payment_methods_path %>
+<br>
+<%= link_to 'Mostrar', @payment_method, class: "blue-grey btn waves-effect waves-light" %>
+<%= link_to 'Voltar', payment_methods_path, class: "blue-grey btn waves-effect waves-light" %>

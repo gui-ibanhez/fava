@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Origem de Venda</h1>
 <p>
-  <strong>Name:</strong>
+  <strong>Origem:</strong>
   <%= @origin.name %>
 </p>
 
-<%= link_to 'Edit', edit_origin_path(@origin) %> |
-<%= link_to 'Back', origins_path %>
+<%= link_to 'Editar', edit_origin_path(@origin), class: "blue-grey btn waves-effect waves-light" %>
+<%= link_to 'Voltar', origins_path, class: "blue-grey btn waves-effect waves-light" %>

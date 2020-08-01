@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Despesas</h1>
+<%= link_to '<i class="material-icons left">receipt</i>Nova despesa'.html_safe, 
+            new_expense_path, 
+            class: "blue-grey btn waves-effect waves-light" %>
 
 <table>
   <thead>
@@ -28,4 +31,4 @@
 
 <br>
 
-<%= link_to 'Nova despesa', new_expense_path %>
+

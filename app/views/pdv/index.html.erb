@@ -4,13 +4,13 @@
     <div class="input_field">
       <%= form.label :customer, 'Cliente'%>
       <%= form.select :customer, 
-    options_for_select(Customer.select(:id, :name).map { |e| [e.name, e.id]}) %>
+    options_for_select(@customers) %>
     </div>
   </div>
     <div class="input_field">
-    <%= form.label :origin, 'Origem' %>
+    <%= form.label :origin, "Origem" %>
     <%= form.select :origin,  
-    options_for_select(Origin.select(:id, :name).map { |e| [e.name, e.id]})%>
+    options_for_select(@origins)%>
   </div>
   <br>
   <div class="input_field">
@@ -26,7 +26,7 @@
       <div class="input_field">
         <%= form.label :pdv_product, 'Produto'%>
         <%= form.select :product_id, 
-      options_for_select(Product.select(:nome, :id).map { |e| [e.nome, e.id]}) %>
+      options_for_select(@products) %>
       </div>
     </div>
     <div class='col s6 center' id='pdv_button'>

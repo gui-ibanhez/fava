@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<h1> Tipo de Despesa</h1>
 <p>
-  <strong>Name:</strong>
+  <strong>Tipo:</strong>
   <%= @expense_kind.name %>
 </p>
 
-<%= link_to 'Edit', edit_expense_kind_path(@expense_kind) %> |
-<%= link_to 'Back', expense_kinds_path %>
+<%= link_to 'Editar', edit_expense_kind_path(@expense_kind), class: "blue-grey btn waves-effect waves-light"  %>
+<%= link_to 'Voltar', expense_kinds_path, class: "blue-grey btn waves-effect waves-light"  %>

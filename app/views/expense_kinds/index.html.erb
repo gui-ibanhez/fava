@@ -1,11 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Expense Kinds</h1>
+<h1>Tipos de Despesas</h1>
+
+<%= link_to '<i class="material-icons left">receipt</i>Novo tipo de despesa'.html_safe, 
+            new_expense_kind_path, 
+            class: "blue-grey btn waves-effect waves-light" %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Tipo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +18,9 @@
     <% @expense_kinds.each do |expense_kind| %>
       <tr>
         <td><%= expense_kind.name %></td>
-        <td><%= link_to 'Show', expense_kind %></td>
-        <td><%= link_to 'Edit', edit_expense_kind_path(expense_kind) %></td>
-        <td><%= link_to 'Destroy', expense_kind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', expense_kind %></td>
+        <td><%= link_to 'Editar', edit_expense_kind_path(expense_kind) %></td>
+        <td><%= link_to 'Apagar', expense_kind, method: :delete, data: { confirm: 'Tem certeza de que deseja apagar o registro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Expense Kind', new_expense_kind_path %>
+
