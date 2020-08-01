@@ -3,7 +3,7 @@ class PdvController < ApplicationController
   def index
     @customers = Customer.select(:id, :name).order(:name).map { |e| [e.name, e.id]}
     @origins = Origin.select(:id, :name).order(:name).map { |e| [e.name, e.id]}
-    @products = Product.select(:nome, :id).order(:name).map { |e| [e.nome, e.id]}
+    @products = Product.select(:nome, :id).order(:nome).map { |e| [e.nome, e.id]}
   end
 
   def get_products
