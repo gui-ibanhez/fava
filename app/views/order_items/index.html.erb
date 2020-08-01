@@ -29,4 +29,18 @@
       </tr>
     <% end %>
   </tbody>
+  <tfoot>
+    <tr>
+      <td>
+        <h5>Total</h5>
+      </td>
+      <td></td>
+      <td></td>
+      <td>
+        <h5><%= "R$ %0.2f" % [@order_items.reduce(0) { |sum, e| sum += e.value }] %></h5>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tfoot>
 </table
