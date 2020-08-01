@@ -54,7 +54,7 @@
     input.addEventListener("change", ()=>{
         let total = input.parentNode.nextElementSibling.nextElementSibling
         let preco = input.parentNode.nextElementSibling
-        total.textContent = parseInt(input.value) * parseInt(preco.textContent)
+        total.textContent = (parseFloat(input.value) * parseFloat(preco.textContent)).toFixed(2)
         gera_troco()
     })
 
